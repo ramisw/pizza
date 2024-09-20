@@ -11,6 +11,7 @@ export default function AuthForm({type}: { type: 'login' | 'signup' }) {
     const {error} = useAppSelector(state => state.auth)
     const isLogin = type === 'login'
     const router = useRouter()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isVisible, setIsVisible] = useState(false)
