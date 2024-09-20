@@ -14,5 +14,6 @@ npm run dev
 ```
 
 ### Design Figma - [Next Pizza](https://www.figma.com/design/cYz4fOSK74EJoqHxoNr1hT/Next-Pizza?node-id=45166-430&t=RdWRv7Q457saeA2T-0)
+### Deploy Vercel - [https://pizza-nine-rust.vercel.app/](https://pizza-nine-rust.vercel.app/)
 
 ###### 21.08.2024
