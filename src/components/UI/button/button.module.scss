@@ -1,0 +1,24 @@
+.outline, .primary{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 15px;
+  outline: none;
+  padding: 15px 30px;
+  font-weight: 600;
+}
+
+.primary {
+  background: #FE5F00;
+  color: #fff;
+  border: none;
+}
+
+.outline {
+  border: 1px solid #FE5F00;
+  color: #FE5F00;
+  background: white;
+}

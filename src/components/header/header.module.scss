@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  div {
+    span {
+      font-size: 24px;
+      font-weight: 900;
+      text-align: left;
+      color: #000000;
+    }
+
+    p {
+      color: #7B7B7B;
+      font-size: 16px;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+}

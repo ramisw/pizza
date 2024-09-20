@@ -1,0 +1,51 @@
+.wrapper {
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.checkbox {
+  display: flex;
+  cursor: pointer;
+  span {
+    margin: 10px 10px;
+  }
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  div {
+    width: 90px;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: 1px solid #F0F0F0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 10px;
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
