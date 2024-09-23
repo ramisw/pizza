@@ -1,31 +1,30 @@
 'use client'
+
 import Image from "next/image";
-import {icons} from "../../icons";
-import styles from './search.module.scss'
-import {useState} from "react";
-
-interface Pizza {
-    id: number
-    name: string
-    price: number
-}
-
-const pizzas: Pizza[] = [
-    {id: 1, name: 'Чизбургер-пицца', price: 179},
-    {id: 2, name: 'Острая пицца-чизбургер', price: 299},
-]
+import {icons} from "@/icons";
+import styles from './search.module.scss';
+import {ChangeEvent, useState, useEffect} from "react";
+import {useAppSelector} from "@/hooks/redux";
+import {IPizza} from "@/types/pizza";
+import Link from "next/link";
 
 export default function Search() {
-
     const [value, setValue] = useState('')
-    const [filteredPizzas, setFilteredPizzas] = useState<Pizza[]>([])
+    const {pizzas} = useAppSelector(state => state.pizza)
+    const [filteredPizzas, setFilteredPizzas] = useState<IPizza[]>([])
     const [isFocused, setIsFocused] = useState(false)
 
-    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setValue(e.target.value)
-        setFilteredPizzas(pizzas.filter(pizza => {
-            return pizza.name.toLowerCase().includes(value.toLowerCase())
-        }))
+    function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+        const searchTerm = e.target.value
+        setValue(searchTerm)
+
+        setFilteredPizzas(pizzas.filter(pizza =>
+            pizza.title.toLowerCase().includes(searchTerm.toLowerCase())
+        ))
+    }
+
+    function handleBlur() {
+        setTimeout(() => setIsFocused(false), 200)
     }
 
     return (
@@ -34,27 +33,28 @@ export default function Search() {
                 <div
                     className={styles.focus}
                     onClick={() => setIsFocused(!isFocused)}
-                ></div>}
+                ></div>
+            }
             <div className={styles.input}>
                 <input
                     onChange={handleInputChange}
                     value={value}
                     onFocus={() => setIsFocused(true)}
+                    onBlur={handleBlur}
                     type="text"
                     placeholder="Поиск пиццы..."
                 />
-                <Image src={icons.search} alt={''}/>
+                <Image src={icons.search} alt=''/>
             </div>
-            {isFocused &&
+            {isFocused && value && filteredPizzas.length > 0 &&
                 <div className={styles.content}>
-                    {filteredPizzas.map(pizza => {
-                        return (
-                            <div className={styles.item} key={pizza.id}>
-                                <span>{pizza.name}</span>
-                            </div>
-                        )
-                    })}
-                </div>}
+                    {filteredPizzas.map(pizza => (
+                        <Link href={`/product/${pizza.id}`} className={styles.item} key={pizza.id}>
+                            <span>{pizza.title}</span>
+                        </Link>
+                    ))}
+                </div>
+            }
         </div>
     )
 }

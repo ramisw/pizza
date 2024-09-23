@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                hostname: 'media.dodostatic.net'
+            }
+        ]
+    }
+}
 
 export default nextConfig

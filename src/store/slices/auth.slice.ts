@@ -1,20 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User} from "@firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, User} from "@firebase/auth";
 import {auth} from "@/lib/firebase";
 import {FirebaseError} from "@firebase/app";
-
-export interface IEmailAndPassword {
-    email: string
-    password: string
-}
-
-interface IUser {
-    displayName: string | null
-    email: string | null
-    uid: string
-    photoUrl: string | null
-    phoneNumber: string | null
-}
+import {IUser} from "@/types/user";
 
 interface AuthState {
     user: IUser | null
@@ -28,7 +16,7 @@ const initialState: AuthState = {
     loading: false
 }
 
-export const login = createAsyncThunk<IUser, IEmailAndPassword, { rejectValue: string }>(
+export const login = createAsyncThunk<IUser, { email: string, password: string }, { rejectValue: string }>(
     'auth/login',
     async ({email, password}, {rejectWithValue}) => {
         try {
@@ -45,17 +33,21 @@ export const login = createAsyncThunk<IUser, IEmailAndPassword, { rejectValue: s
             if (error instanceof FirebaseError) {
                 return rejectWithValue(handleError(error.code))
             } else {
-                return rejectWithValue('Произошла неизвестная ошибка. Попробуйте снова.')
+                return rejectWithValue('неизвестная ошибка. попробуйте снова')
             }
         }
     }
 )
 
-export const signup = createAsyncThunk<IUser, IEmailAndPassword, { rejectValue: string }>(
+export const signup = createAsyncThunk<IUser,
+    { username: string, email: string, password: string },
+    { rejectValue: string }>(
     'auth/signup',
-    async ({email, password}, {rejectWithValue}) => {
+    async ({username, email, password}, {rejectWithValue}) => {
         try {
             const {user} = await createUserWithEmailAndPassword(auth, email, password)
+            await updateProfile(user, {displayName: username})
+
             return {
                 displayName: user.displayName || null,
                 email: user.email || null,
@@ -68,7 +60,7 @@ export const signup = createAsyncThunk<IUser, IEmailAndPassword, { rejectValue: 
             if (error instanceof FirebaseError) {
                 return rejectWithValue(handleError(error.code))
             } else {
-                return rejectWithValue('Произошла неизвестная ошибка. Попробуйте снова.')
+                return rejectWithValue('неизвестная ошибка. попробуйте снова')
             }
         }
     }

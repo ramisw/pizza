@@ -1,0 +1,75 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.image {
+  width: 100%;
+  max-width: 300px;
+  object-fit: cover;
+  position: relative;
+}
+
+.description {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+  }
+
+  .extras {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: space-between;
+    user-select: none;
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .extraCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+
+    &.selected {
+      border-color: orange;
+    }
+
+    img {
+      margin-bottom: 10px;
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  button {
+    padding: 15px 30px;
+  }
+}

@@ -1,10 +1,10 @@
 import {Modal} from "@/components/UI/modal";
-import AuthForm from "@/components/authForm/authForm";
+import Auth from "../../../../components/auth";
 
 export default async function Page() {
     return (
         <Modal>
-            <AuthForm type={'signup'}/>
+            <Auth type={'signup'}/>
         </Modal>
     )
 }

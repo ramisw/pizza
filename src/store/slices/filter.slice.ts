@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IPizza} from "@/types/pizza";
 
 interface FilterState {
     isNew: boolean
@@ -6,6 +7,7 @@ interface FilterState {
     ingredients: string[]
     typeDough: 'traditional' | 'thin'
     canCustomize: boolean
+    filteredPizzas: IPizza[]
 }
 
 const initialState: FilterState = {
@@ -13,7 +15,8 @@ const initialState: FilterState = {
     priceRange: [0, 1920],
     ingredients: [],
     typeDough: 'traditional',
-    canCustomize: false
+    canCustomize: false,
+    filteredPizzas: []
 }
 
 const filterSlice = createSlice({

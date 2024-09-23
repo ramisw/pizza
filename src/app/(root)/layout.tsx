@@ -5,7 +5,6 @@ import Header from "@/components/header";
 import RootProvider from "@/app/RootProvider";
 import {Metadata} from "next";
 import Container from "@/components/UI/container";
-import Filter from "../../components/filter";
 
 const nunito = Nunito({
     subsets: ['cyrillic'],
@@ -24,13 +23,8 @@ export default function RootLayout(props: { children: ReactNode, modal: ReactNod
             <body className={nunito.className}>
             <Container>
                 <Header/>
-                <div className={'layoutWrapper'}>
-                    <div className={'sidebar'}>
-                        <Filter/>
-                    </div>
-                    <div className={'content'}>
-                        {props.children}
-                    </div>
+                <div className={'content'}>
+                    {props.children}
                 </div>
             </Container>
             {props.modal}

@@ -1,12 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
 import authSlice from "@/store/slices/auth.slice";
 import filterSlice from "@/store/slices/filter.slice";
+import pizzaSlice from "@/store/slices/pizza.slice";
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
             auth: authSlice,
-            filter: filterSlice
+            filter: filterSlice,
+            pizza: pizzaSlice,
         }
     })
 }

@@ -1,7 +1,13 @@
-export default function Page() {
+import Pizzas from "@/components/pizzas/Pizzas";
+import Filter from "@/components/filter";
+
+export default async function Page() {
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className='layoutWrapper'>
+            <div className={'sidebar'}>
+                <Filter/>
+            </div>
+            <Pizzas/>
         </div>
     )
 }

@@ -17,7 +17,7 @@ export function Modal({children}: { children: ReactNode }) {
         <div className={styles.overlay} onClick={close}>
             <div className={styles.content} onClick={e => e.stopPropagation()}>
                 {children}
-                <Image onClick={close} width={25} height={25} src={icons.close} alt={''}/>
+                <Image className={styles.close} onClick={close} width={25} height={25} src={icons.close} alt={''}/>
             </div>
         </div>,
         document.getElementById('modal') as HTMLElement
