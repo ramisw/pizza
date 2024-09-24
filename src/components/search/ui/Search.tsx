@@ -1,24 +1,34 @@
 'use client'
-
 import Image from "next/image";
-import {icons} from "@/icons";
 import styles from './search.module.scss';
 import {ChangeEvent, useState, useEffect} from "react";
-import {useAppSelector} from "@/hooks/redux";
+import {useAppDispatch, useAppSelector} from "@/hooks/redux";
 import {IPizza} from "@/types/pizza";
 import Link from "next/link";
+import {getProducts} from "@/services/product.service";
+import {productActions} from "@/store/slices/product.slice";
 
-export default function Search() {
+export const Search = () => {
+
     const [value, setValue] = useState('')
-    const {pizzas} = useAppSelector(state => state.pizza)
+    const {products} = useAppSelector(state => state.product)
     const [filteredPizzas, setFilteredPizzas] = useState<IPizza[]>([])
     const [isFocused, setIsFocused] = useState(false)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        getProducts().then(pizza => {
+            if (pizza){
+                dispatch(productActions.setProducts(pizza))
+            }
+        })
+    })
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const searchTerm = e.target.value
         setValue(searchTerm)
 
-        setFilteredPizzas(pizzas.filter(pizza =>
+        setFilteredPizzas(products.filter(pizza =>
             pizza.title.toLowerCase().includes(searchTerm.toLowerCase())
         ))
     }
@@ -44,7 +54,7 @@ export default function Search() {
                     type="text"
                     placeholder="Поиск пиццы..."
                 />
-                <Image src={icons.search} alt=''/>
+                <Image width={16} height={16} src={'/icons/search.svg'} alt=''/>
             </div>
             {isFocused && value && filteredPizzas.length > 0 &&
                 <div className={styles.content}>

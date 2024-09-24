@@ -1,9 +1,7 @@
-import notFoundIcon from '@/icons/notfound.svg'
 import Image from "next/image";
-import arrowLeftIcon from '@/icons/arrowLeft.svg'
 import Link from "next/link";
 import Button from "@/components/UI/button";
-import styles from '../not-found.module.scss'
+import styles from '@/app/not-found.module.scss'
 
 export default function NotFound() {
     return (
@@ -14,7 +12,7 @@ export default function NotFound() {
                 <div className={styles.btns}>
                     <Link href={'/'}>
                         <Button typed={'outline'}>
-                            <Image src={arrowLeftIcon} alt={''}/>
+                            <Image src={'/icons/arrowLeftIcon.svg'} alt={''}/>
                             На главную
                         </Button>
                     </Link>
@@ -25,7 +23,7 @@ export default function NotFound() {
                     </Link>
                 </div>
             </div>
-            <Image src={notFoundIcon} alt={''}/>
+            <Image src={'/icons/notfound.svg'} alt={''}/>
         </div>
     )
 }

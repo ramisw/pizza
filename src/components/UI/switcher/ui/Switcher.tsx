@@ -1,18 +1,18 @@
 import styles from './switcher.module.scss'
 import {FC} from "react"
 
-interface SwitcherOption {
+interface Switcher {
     label: string
     value: string
 }
 
 interface SwitcherProps {
-    options: SwitcherOption[]
+    options: Switcher[]
     selectedValue: string
     onChange: (value: string) => void
 }
 
-const Switcher: FC<SwitcherProps> = ({ options, selectedValue, onChange }) => {
+export const Switcher: FC<SwitcherProps> = ({ options, selectedValue, onChange }) => {
     return (
         <div className={styles.switcher}>
             {options.map(option => (
@@ -27,5 +27,3 @@ const Switcher: FC<SwitcherProps> = ({ options, selectedValue, onChange }) => {
         </div>
     )
 }
-
-export default Switcher

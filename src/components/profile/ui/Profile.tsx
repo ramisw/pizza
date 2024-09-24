@@ -1,7 +1,7 @@
 'use client'
 import {useAppSelector} from "@/hooks/redux";
 
-export default function Profile() {
+export const Profile = () => {
 
     const {user} = useAppSelector(state => state.auth)
 

@@ -1,17 +1,22 @@
-import Product from "@/components/product/Product";
-import {Modal} from "@/components/UI/modal";
+import {getProductById} from "@/services/product.service";
+import Product from "@/components/product";
+import Modal from "@/components/UI/modal";
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<{ params: string }> {
-    return {
-        params: params.id
+type Props = {
+    params: {
+        id: string
     }
 }
 
-export default function ProductPage({params}: { params: { id: string } }) {
+export default async function ProductPage({params}: Props) {
 
-    return (
-        <Modal>
-            <Product id={params.id}/>
-        </Modal>
-    )
+    const pizza = await getProductById(params.id)
+
+    if (pizza) {
+        return (
+            <Modal>
+                <Product pizza={pizza}/>
+            </Modal>
+        )
+    }
 }

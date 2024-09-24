@@ -1,4 +1,4 @@
-interface Ingredient {
+export interface Ingredient {
     title: string
     price: number
 }

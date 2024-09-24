@@ -4,13 +4,14 @@ import Button from "@/components/UI/button";
 import styles from './card.module.scss'
 import Link from "next/link";
 
-export default function Card({pizza}: { pizza: IPizza }) {
+export const Card = ({pizza}: { pizza: IPizza }) => {
     return (
         <Link href={`/product/${pizza.id}`} className={styles.wrapper}>
             <Image width={280} height={280} src={pizza.imgUrl} alt={pizza.title}/>
             <div className={styles.data}>
                 <h3 className={styles.title}>{pizza.title}</h3>
                 <span className={styles.description}>{pizza.description}</span>
+                <span>{pizza.typeDough === 'thin' ? 'Тонкий': 'Традиционный'}</span>
                 <div>
                     <span>
                        от <strong>{pizza.price}</strong> ₽

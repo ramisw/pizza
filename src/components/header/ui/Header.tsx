@@ -1,13 +1,12 @@
 'use client'
 import styles from './header.module.scss'
 import Image from "next/image";
-import {icons} from "@/icons";
 import Link from "next/link";
 import Search from "@/components/search";
 import Button from "@/components/UI/button";
 import {useAppSelector} from "@/hooks/redux";
 
-export default function Header() {
+export const Header = () => {
 
     const {user} = useAppSelector(state => state.auth)
 
@@ -15,7 +14,7 @@ export default function Header() {
         <header className={styles.header}>
             <Link href="/" className={styles.link}>
                 <div className={styles.logo}>
-                    <Image src={icons.logo} alt={''}/>
+                    <Image width={35} height={35} src={'/logo.svg'} alt={''}/>
                     <div>
                         <span>NEXT PIZZA</span>
                         <p>вкусней уже некуда</p>
@@ -25,12 +24,12 @@ export default function Header() {
             <Search/>
             {!user ? <Link href="/login">
                 <Button typed={'outline'}>
-                    <Image src={icons.user} alt={''}/>
+                    <Image width={13} height={15} src={'/icons/user.svg'} alt={''}/>
                     Войти
                 </Button>
             </Link> : <Link href="/profile">
                 <Button typed={'outline'}>
-                    <Image src={icons.user} alt={''}/>
+                    <Image width={13} height={15} src={'/icons/user.svg'} alt={''}/>
                     Профиль
                 </Button>
             </Link>

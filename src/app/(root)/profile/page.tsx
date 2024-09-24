@@ -1,5 +1,5 @@
-import Profile from "@/components/profile/Profile";
+import Profile from "@/components/profile";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
     return <Profile/>
 }

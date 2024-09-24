@@ -1,5 +1,5 @@
-import Auth from "../../../components/auth";
+import Auth from "@/components/auth";
 
-export default async function Page() {
+export default async function LoginPage() {
     return <Auth type={'login'}/>
 }
