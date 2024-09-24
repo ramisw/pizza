@@ -2,10 +2,10 @@
 import styles from './filter.module.scss'
 import {useAppDispatch, useAppSelector} from "@/hooks/redux";
 import {useState} from "react";
-import {IFilterCriteria} from "@/services/filter.service";
 import {Ingredient, IPizza} from "@/types/pizza";
 import {productActions} from "@/store/slices/product.slice";
 import Button from "@/components/UI/button";
+import {IFilterCriteria} from "@/types/filter";
 
 const mokIngredients: Ingredient[] = [
     {title: 'Сырный соус', price: 79},
